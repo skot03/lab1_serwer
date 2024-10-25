@@ -1,32 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GET and POST Requests</title>
-    <script src="./requests_async.js"></script>
+    <title>Team Manager</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="text/javascript" src="requests_async.js" defer></script>
 </head>
 <body>
-    <h1>Send GET and POST Requests</h1>
+    <div class="container">
+        <form id="myform">
+            <h2>Let's level up your brand, together</h2>
+            <label for="firstName">First name</label>
+            <input type="text" id="first_name" class="input" placeholder="First name" required>
+            
+            <label for="lastName">Last name</label>
+            <input type="text" id="last_name" class="input" placeholder="Last name" required>
+            
+            <label for="role">Role</label>
+            <select id="role" class="input" required>
+                <option value="" disabled selected hidden >Select a role</option>
+                <option value="Manager">Manager</option>
+                <option value="Product Designer">Product Designer</option>
+                <option value="Development Lead">Development Lead</option>
+            </select>
 
-    <!-- Form for GET Request -->
-    <h2>GET Request</h2>
-    <label for="getInputField">Enter path for GET request:</label>
-    <input type="text" id="getInputField" placeholder="Enter path for GET request">
-    <button onclick="sendGetRequest()">Send GET Request</button>
+            <label class="checkbox">
+                <input type="checkbox" id="privacyPolicy" required> You agree to our friendly 
+                <a href="#" target="_blank">privacy policy</a>.
+            </label>
 
-    <h3>GET Response:</h3>
-    <pre id="getResponse"></pre>
-
-    <hr>
-
-    <!-- Form for POST Request -->
-    <h2>POST Request</h2>
-    <label for="postNameField">Enter name for POST request:</label>
-    <input type="text" id="postNameField" placeholder="Enter name for POST request">
-    <button onclick="sendPostRequest()">Send POST Request</button>
-
-    <h3>POST Response:</h3>
-    <pre id="postResponse"></pre>
+            <button type="submit" class="submit-button">SUBMIT</button>
+        </form>
+        
+        
+    </div>
+    <div class="members" >
+            
+    </div>
 </body>
 </html>
