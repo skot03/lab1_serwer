@@ -1,14 +1,27 @@
-# Use an official Python runtime as a parent image
+# Użyj oficjalnego obrazu Pythona jako obrazu bazowego
 FROM python:3.9-slim
 
-# Set the working directory inside the container
+# Ustaw katalog roboczy w kontenerze
 WORKDIR /usr/src/app
 
-# Copy the Python server script into the container
+# Skopiuj plik server.py do kontenera
 COPY server.py .
 
-# Expose the port that your Python server will run on
+# Skopiuj plik requirements.txt, jeśli masz ten plik
+COPY requirements.txt .
+
+RUN apt-get update && apt-get install -y \
+build-essential \
+libpq-dev \
+&& rm -rf /var/lib/apt/lists/*
+
+# Zainstaluj wymagane zależności
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+
+# Otwórz port 8000, na którym działa serwer Python
 EXPOSE 8000
 
-# Run the Python server
+# Uruchom skrypt serwera
 CMD ["python", "./server.py"]

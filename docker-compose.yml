@@ -15,6 +15,31 @@ services:
       - "8000:8000"  # Expose port 8000 for the Python server
     networks:
       - webnet
+  
+  postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydatabase
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+      - ./postgres_init:/docker-entrypoint-initdb.d/
+    networks:
+      - webnet
+
+  pgadmin:  # Nowa usługa pgAdmin
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"  # Expose port 5050 for pgAdmin web interface
+    depends_on:
+      - postgres
+    networks:
+      - webnet
 
 networks:
   webnet:
